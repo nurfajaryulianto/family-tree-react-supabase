@@ -1,8 +1,8 @@
 [![CodeGuide](/codeguide-backdrop.svg)](https://codeguide.dev)
 
-# CodeGuide Vite + Supabase Starter
+# Family Tree App with Real-time Collaboration
 
-A modern web application starter template built with Vite and React, featuring a beautiful UI and Supabase integration.
+A comprehensive family tree application with advanced real-time collaboration features, built with modern web technologies. This project demonstrates multi-user genealogy management with live updates, presence tracking, and collaborative editing capabilities.
 
 ## Tech Stack
 
@@ -84,13 +84,32 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 ## Features
 
-- 📦 Supabase Database Integration
-- 🎨 Modern UI with Tailwind CSS and Radix UI
-- 🚀 Fast Development with Vite
-- 🔄 Data Fetching with TanStack Query
-- 📱 Responsive Design
+### Core Family Tree Features
+- 🌳 Interactive Family Tree Builder with multi-generation support
+- 👥 Comprehensive Member Management with detailed profiles
+- 🔗 Advanced Relationship Management (parent, child, spouse, sibling)
+- 📝 Rich Member Profiles with photos, documents, and biographies
+- 🎨 Beautiful UI with Tailwind CSS and Radix UI components
+- 📱 Fully Responsive Design for all devices
+
+### Real-time Collaboration Features
+- 🔄 **Live Updates** - Instant synchronization across all connected users
+- 👁️ **Presence Tracking** - See who's currently viewing or editing the tree
+- 🖱️ **Collaborative Cursors** - Track other users' cursor positions in real-time
+- 🔔 **Visual Notifications** - Toast notifications for changes made by collaborators
+- 📊 **Activity Feed** - Timeline of all recent changes with user attribution
+- ✨ **Change Highlights** - Visual indicators for newly added or updated members
+- 🎯 **Member Focus** - See which members other users are currently viewing
+- 🌐 **Connection Status** - Real-time connectivity monitoring and auto-reconnection
+
+### Technical Features
+- ⚡ Fast Development with Vite
+- 🗄️ Supabase Database Integration with Row-Level Security
+- 🔄 Data Fetching with TanStack Query and optimistic updates
 - 🎭 Beautiful Animations with Framer Motion
-- 📝 Type-Safe Forms with React Hook Form and Zod
+- 📝 Type-Safe Forms with React Hook Form and Zod validation
+- 🔒 Secure Authentication and Authorization
+- 🎯 TypeScript for type safety and better development experience
 
 ## Project Structure
 
@@ -104,6 +123,38 @@ codeguide-vite-supabase/
 ├── public/            # Static assets
 └── documentation/     # Generated documentation from CodeGuide
 ```
+
+## Real-time Collaboration Setup
+
+To enable real-time collaboration features:
+
+1. **Set up the database schema**:
+   ```bash
+   # If using Supabase CLI
+   supabase db push
+   ```
+
+2. **Enable Realtime** in your Supabase project:
+   - Go to Supabase Dashboard → Project → Replication
+   - Enable Realtime for tables: `trees`, `members`, `relationships`, `activities`, `presence`
+
+3. **Configure RLS Policies** (included in migration):
+   - All tables have Row-Level Security enabled
+   - Users can only access trees they own or are invited to
+   - Presence and activities are isolated per tree
+
+4. **Use the RealtimeCollaborationProvider**:
+   ```typescript
+   import { RealtimeCollaborationProvider } from '@/contexts/RealtimeCollaborationContext'
+
+   function App() {
+     return (
+       <RealtimeCollaborationProvider treeId="your-tree-id">
+         <FamilyTreeComponent />
+       </RealtimeCollaborationProvider>
+     )
+   }
+   ```
 
 ## Available Scripts
 

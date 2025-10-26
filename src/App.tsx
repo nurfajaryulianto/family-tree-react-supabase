@@ -1,9 +1,9 @@
-import { Hero } from "./components/ui/animated-hero";
+import { ComprehensiveDemo } from "./components/family-tree/ComprehensiveDemo";
 
 export default function App() {
   return (
     <div>
-      <Hero />
+      <ComprehensiveDemo />
     </div>
   );
 }
