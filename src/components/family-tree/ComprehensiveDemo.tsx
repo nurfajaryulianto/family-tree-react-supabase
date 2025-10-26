@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { RadialMenuDemo } from './RadialMenuDemo';
 import { FamilyTreeDemo } from './FamilyTreeDemo';
 import { AddMemberFormDemo } from './AddMemberFormDemo';
+import { RealtimeCollaborationDemo } from './RealtimeCollaborationDemo';
 import { FamilyMember } from '@/types/family-tree';
 import {
   Users,
@@ -16,7 +17,8 @@ import {
   CheckCircle,
   Circle,
   Clock,
-  Heart
+  Heart,
+  Wifi
 } from 'lucide-react';
 
 interface FeatureItem {
@@ -51,6 +53,13 @@ export function ComprehensiveDemo() {
       status: 'completed',
       icon: <UserPlus className="h-5 w-5" />,
       component: <AddMemberFormDemo />
+    },
+    {
+      title: 'Real-time Collaboration',
+      description: 'Real-time updates, presence tracking, collaborative cursors, activity feed, and visual notifications',
+      status: 'completed',
+      icon: <Wifi className="h-5 w-5" />,
+      component: <RealtimeCollaborationDemo />
     },
     {
       title: 'Profil Anggota Detail',
